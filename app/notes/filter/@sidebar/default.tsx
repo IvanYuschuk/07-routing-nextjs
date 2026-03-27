@@ -11,9 +11,9 @@ const SidebarNotes = () => {
                     All notes
                 </Link>
             </li>
-            {tagArr.map((tag, index) => {
+            {tagArr.map((tag) => {
                 return (
-                    <li className={css.menuList } key={index}>
+                    <li className={css.menuItem } key={tag}>
                         <Link href={`/notes/filter/${tag}`} className={css.menuLink }>{tag}</Link>
                     </li>
                 );

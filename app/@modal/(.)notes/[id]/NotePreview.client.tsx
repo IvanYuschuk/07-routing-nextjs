@@ -19,10 +19,6 @@ const NotePreviewClient = () => {
      if (isLoading) return <p>Loading, please wait...</p>;
 
     if (error || !note) return <p>Something went wrong.</p>;
-
-    const formattedDate = note.updatedAt
-    ? `Updated at: ${note.updatedAt}`
-    : `Created at: ${note.createdAt}`; 
     
     const onClose = () => router.back();
 
@@ -34,7 +30,7 @@ const NotePreviewClient = () => {
                         <h2>{note.title}</h2>
                     </div>
                     <p className={css.content}>{note.content}</p>
-                    <p className={css.date}>{formattedDate}</p>
+                    <p className={css.date}>{note.createdAt}</p>
                 </div>
                 <button
                     onClick={onClose}
