@@ -17,15 +17,18 @@ import {  Toaster } from 'react-hot-toast';
 
 
 
+type NoteClientProps = {
+	tag: string | undefined,
+};
 
-export default function NotesClient() { 
+export default function NotesClient({tag}: NoteClientProps) { 
    
 	const [nameNote, setNameNote] = useState('');
 	const [page, setPage] = useState(1);
 	
 	const {data, isSuccess, isLoading, isError} = useQuery({
-		queryKey: ['notes', nameNote, page],
-		queryFn: () => fetchNotes({ searchNote: nameNote, page }),
+		queryKey: ['notes', nameNote, page, tag],
+		queryFn: () => fetchNotes(nameNote, page, tag),
         placeholderData: keepPreviousData,
         refetchOnMount: false,
 	})

@@ -1,22 +1,22 @@
 import axios from "axios";
-import type { Note } from "@/types/note";
-
-interface FetchNotesProps {
-    searchNote: string;
-    page: number;
-}
+import type { Note, NoteTag } from "@/types/note";
 
 interface FetchNotesResponse {
     notes: Note[];
     totalPages: number;
 }
 
-export async function fetchNotes({ searchNote, page }: FetchNotesProps) {
+export async function fetchNotes(
+    searchNote: string,
+    page: number,
+    tag?: string
+) {
     const res = await axios.get<FetchNotesResponse>('https://notehub-public.goit.study/api/notes', {
         params: {
             search: searchNote,
             page: page,
             perPage: 12,
+            tag,
         },
         headers: {
             Accept: 'application/json',
